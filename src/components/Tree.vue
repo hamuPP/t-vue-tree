@@ -77,6 +77,8 @@
 
             getCheckedNodes(type){
                 let that = this;
+                let ss = that.flatTree.filter(obj => obj.node[type]);
+                console.log(ss);
                 return that.flatTree.filter(obj => obj.node[type]).map(obj => obj.node);
             },
 
@@ -252,6 +254,7 @@
                 that.treeAllData.forEach(rootNode => {
                     flattenChildren(rootNode);
                 });
+                console.log(flatTree);
                 return flatTree;
             },
             rebuildTree(){
@@ -319,6 +322,30 @@
                     let oNodeCustormKey = oNode.node[key];
                     if(idsObj[oNodeCustormKey]){
                         that.$set(oNode.node, 'expanded', true);
+                    }
+                }
+            },
+
+            /**
+             * 折叠指定节点
+             * @param key
+             * @param val
+             */
+            collapseNode({key, val}){
+                if(!key || !val){throw '需要传入标识字段key和值val'}
+                let that = this;
+                let idsObj = {};
+
+                val.forEach(it=>{
+                    idsObj[it] = true;
+                });
+                let flatNodes =  that.flatTree;
+
+                for(let i = 0,len = flatNodes.length;i < len;i++){
+                    let oNode = flatNodes[i];
+                    let oNodeCustormKey = oNode.node[key];
+                    if(idsObj[oNodeCustormKey]){
+                        that.$set(oNode.node, 'expanded', false);
                     }
                 }
             }

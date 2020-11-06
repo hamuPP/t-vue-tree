@@ -3,7 +3,8 @@
         <h1>t-vue-tree</h1>
         <h3 class="title-mark"> 一个基于vue的同步树 </h3>
         <p>ps:当前版本没有做异步树</p>
-        <section class="inner-main-content">
+      <router-link :to="{name: child.menuLink, params:{menuId: child.menuId}}">{{child.menuName}}</router-link>
+      <section class="inner-main-content">
             <h3 class="title-mark">例子1_一个基础的例子</h3>
             <div class="example-box" ref="containerNode">
                 <div class="top demo1-tree-wrapper">
@@ -245,6 +246,11 @@
     export default {
         data(){
             return {
+                child:{
+                  menuName:'testUrl',
+                  menuId:'testRouterId',
+                  menuLink: 'testUrl'
+                },
                 examplesObj: [
                     {
                         bottomShow: false,
