@@ -1,7 +1,7 @@
 # Project
 node_modules
 bower_components
-dist/*.map
+/dist/
 
 /_*
 npm-debug.log
